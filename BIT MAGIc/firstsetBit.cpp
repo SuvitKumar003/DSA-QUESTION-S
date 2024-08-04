@@ -1,14 +1,18 @@
 #include<iostream>
 #include<cmath>
 using namespace std;
-int position(int number)
+void first_Set_bit_postion(int n)
 {
-  int res=log2(number&(~(number-1)));
-  return res;
+  if(n%2==0)
+  {
+    cout<<" first bit is set"<<endl;
+  }
+  else
+  {
+    cout<<" first bit is not set"<<endl;
+  }
 }
 int main()
 {
-  int number=18;
-  cout<<position(number);
-  return 0;
+    first_Set_bit_postion(5);
 }
