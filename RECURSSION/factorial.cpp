@@ -10,7 +10,7 @@ int fact(int n,int N)
 }
 int main()
 {
-  int res=fact(5,1);
+  int res=fact(10,1);
   cout<<"the result is "<<res<<endl;
 
 }
