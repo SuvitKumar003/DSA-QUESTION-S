@@ -1,41 +1,27 @@
 #include<iostream>
 using namespace std;
-bool check(int number)
+void check(int n)
 {
-  if(number==0)
+  if(n==0)
   {
-    return false;
+    cout<<" False "<<endl;
   }
-  else
+  int count=0;
+  while(n>0)
   {
-    int count=0;
-  while(number)
-  {
-    number=number&(number-1);
-    count++;
+    n=n&(n-1);
+    count+=1;
   }
   if(count==1)
   {
-    return true;
+    cout<<" the given number is power of two "<<endl;
   }
   else
   {
-    return false;
-  }
-
+    cout<<" The given number is not a power of two "<<endl;
   }
 }
 int main()
 {
-  int number;
-  cin>>number;
-  if(check(number))
-  {
-    cout<<"Yes";
-  }
-  else
-  {
-    cout<<"No";
-  }
-  return 0;
+  check(6);
 }
