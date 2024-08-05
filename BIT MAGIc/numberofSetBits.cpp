@@ -1,20 +1,20 @@
 #include<iostream>
 using namespace std;
-int coutn(int number)
+void set_bits(int n)
 {
+  int x=n;
   int count=0;
-  int num=number;
-  while(num)
+  while(n>0)
   {
-    num=num&(num-1);
-    count++;
+    n=n&(n-1);
+    count=count+1;
   }
-  return count;
+  cout<<" the number of set bits in the number "<<x<<" are "<<count<<endl;
 }
 int main()
 {
   int number;
   cin>>number;
-  cout<<coutn(number);
+  set_bits(number);
   return 0;
 }
