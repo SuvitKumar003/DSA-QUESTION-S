@@ -7,10 +7,10 @@ int power_return(int a, int n)
     {
         return 1;
     }
-    if(n == 1)
+    /*if(n == 1)
     {
         return a;
-    }
+    }*/
     int temp = power_return(a, n / 2);
     temp = temp * temp;
     if(n % 2 == 0)

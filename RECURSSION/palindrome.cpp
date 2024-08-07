@@ -1,31 +1,24 @@
 #include<iostream>
 using namespace std;
-bool checkP(string s,int l,int i)
+bool check(string s, int i,int j)
 {
-  if(s[i]!=s[l])
+  if(s[i]!=s[j])
   {
     return false;
+
   }
- 
-  if(l<i)
+  if(i>=j)
   {
     return true;
   }
-    checkP(s,l-1,i+1);
-    
-  
+  return check(s,i+1,j-1);
 }
 int main()
 {
-  string s="abccbd";
-  bool res=checkP(s,s.length()-1,0);
- // cout<<" the result of the given string is "<<res<<endl;
-if(res)
-{
-  cout<<" the given numberis palindrome "<<endl;
+  string s;
+  cout<<" Enter the string "<<endl;
+  cin>>s;
+  int length=s.length();
+ cout<<" The result is"<<check(s,0,length-1);
 
-}
-else{
-  cout<<" the given number os not palindrome"<<endl;
-}
 }

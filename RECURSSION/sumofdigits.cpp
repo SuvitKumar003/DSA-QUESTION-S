@@ -1,15 +1,19 @@
 #include<iostream>
 using namespace std;
-int sumofdigits(int n)
+int sum_of_digits(int number)
 {
-  if(n<10)
+  ;
+  int x=number%10;
+  if(number==0)
   {
-    return n;
+   return 0;
   }
-  return n%10+sumofdigits(n/10);
+ return x+sum_of_digits(number/10);
 }
 int main()
 {
-  int res=sumofdigits(12345);
-  cout<<" the result of the given number is  "<<res<<endl;
+  cout<<" Enter the number for calculating the sum odf digits "<<endl;
+  int num;
+  cin>>num;
+  cout<<" The sum fo numbers is "<<sum_of_digits(num);
 }
