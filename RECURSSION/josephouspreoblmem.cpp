@@ -1,18 +1,20 @@
 #include<iostream>
 using namespace std;
-int live(int n,int k)
+int returnJosephous(int n,int k)
 {
-  if(n==1)
-  {
-    return 1;
-  }
-  else
-  {
-    return (live(n-1,k)+k-1)%n +1;
-  }
-}
-int main()
-{
-  int res=live(14,2);
-  cout<<" the person who is alive is "<<res<<endl;
-}
+ if(n==1)
+ {
+  return 0;
+ }
+ return (returnJosephous(n-1,k)+k)%n;
+ }
+ int main()
+ {
+  int n,k;
+  cout<<"Enter the number of people"<<endl;
+  cin>>n;
+  cout<<"Enter the number of people to be skipped"<<endl;
+  cin>>k;
+  cout<<"The person who will survive is "<<returnJosephous(n,k)+1<<endl;
+  return 0;
+ }

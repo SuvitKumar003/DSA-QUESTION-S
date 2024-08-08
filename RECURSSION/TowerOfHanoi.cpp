@@ -1,17 +1,21 @@
 #include<iostream>
 using namespace std;
-void TOH(int n,char A,char B,char C)
+void print_Steps(int n,char x,char y,char z)
 {
   if(n==1)
   {
-    cout<<" move the disc "<<n<<" from "<<A<<" to "<<C<<endl;
-    return ;
+    cout<<" Move the disk from "<<x<<" to "<<z<<endl;
+    return;
   }
-  TOH(n-1,A,C,B);
-  cout<<" move the disc "<<n<<" from tower "<<A<<" to tower "<<C<<endl;
-  TOH(n-1,B,A,C);
-  }
-  int main()
-  {
-    TOH(3,'A','B','C');
-  }
+  print_Steps(n-1,x,z,y);
+  cout<<" move ths disk from"<<x<<" to "<<z<<endl;
+  print_Steps(n-1,y,x,z);
+}
+int main()
+{
+  int n;
+  cout<<"Enter the number of disks"<<endl;
+  cin>>n;
+  print_Steps(n,'A','B','C');
+  return 0;
+}
