@@ -1,0 +1,2 @@
+
+    bool isPalindrome(int x) {

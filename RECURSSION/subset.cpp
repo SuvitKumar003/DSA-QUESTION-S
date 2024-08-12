@@ -3,7 +3,7 @@ using namespace std;
 
 void print_subset(string s, string curr, int i) {
     if (i == s.length()) {
-        cout << curr << " ";
+        cout << curr <<"  ";
         return;
     }
     print_subset(s, curr, i + 1);
