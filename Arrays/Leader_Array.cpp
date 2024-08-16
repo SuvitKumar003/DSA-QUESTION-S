@@ -3,7 +3,7 @@ using  namespace std;
 void leader(int arr[],int n)
 {
   
-  for(int i=0;i<n;i++)
+ /* for(int i=0;i<n;i++)
   {
     int count=0;
     for(int j=i;j<n;j++)
@@ -19,6 +19,17 @@ void leader(int arr[],int n)
       cout<<arr[i]<<" ";
     }
   }
+  */
+ cout<<arr[n-1]<<" ";
+ int curr=arr[n-1];
+ for(int i=n-2;i>=0;i--)
+ {
+    if(arr[i]>curr)
+    {
+      cout<<arr[i]<<" ";
+      curr=arr[i];
+    }
+ }
 }
 int main()
 {
