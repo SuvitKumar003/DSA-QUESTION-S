@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-int length_of_subarray(int arr[],int n)
+int length_of_subarray(int arrf,int n)
 {
   int count=1;
   for(int i=0;i<n;i++)
@@ -15,15 +15,15 @@ int length_of_subarray(int arr[],int n)
     else
     {
      break;
-   }
-    res=max(res,count); 
+    }
+    count=max(res,count); 
     }
   }
   return count;
 }
 int main()
 {
-  int arr[]={1,2,3,4,5};
+  int arr[]={10,12,14,7,8};
   cout<<"The length of longest even odd subarray is: "<<length_of_subarray(arr,5);
   return 0;
 }
