@@ -8,7 +8,7 @@ int sum1(int arr[], int n, int k) {
     }
 
     int max_sum = 0;
-    int sum12 = 0;
+    int sum12 = 0; 
 
     // Sum the first 'k' elements
     for (int i = 0; i < k; i++) {
