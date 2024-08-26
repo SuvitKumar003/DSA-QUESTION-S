@@ -1,0 +1,110 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+int findMinimumIdleness(string shader, int switchCount) {
+    int n = shader.size();
+
+    // If the number of switches is greater than or equal to the length of the string,
+    // the entire string can be converted to a single character, resulting in a minimum idleness of 1.
+    if (switchCount >= n) {
+        return 1;
+    }
+
+    // Helper function to calculate the max consecutive length after making `k` switches
+    auto maxSegmentAfterSwitches = [&](char ch) {
+        int maxSegment = 0, currSegment = 0, switchesUsed = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (shader[i] != ch) {
+                switchesUsed++;
+                currSegment = 0;
+            }
+
+            currSegment++;
+
+            // If the number of switches used exceeds the allowed limit, move the left pointer
+            while (switchesUsed > switchCount) {
+                if (shader[i - currSegment + 1] != ch) {
+                    switchesUsed--;
+                }
+                currSegment--;
+            }
+
+            // Update the maximum segment length
+            maxSegment = max(maxSegment, currSegment);
+        }
+
+        return maxSegment;
+    };
+
+    // Calculate the minimum idleness by considering both 'a' and 'b'
+    int minIdleness = min(maxSegmentAfterSwitches('a'), maxSegmentAfterSwitches('b'));
+
+    return minIdleness;
+}
+
+int main() {
+    string shader = "ababa";
+    int switchCount = 5;
+    cout << "Minimum possible idleness: " << findMinimumIdleness(shader, switchCount) << endl;
+    return 0;
+}
+
+
+
+
+#include <vector>
+#include <unordered_set>
+#include <iostream>
+
+int findMinChanges(const std::vector<int>& taskDependency) {
+    int n = taskDependency.size();
+    std::vector<int> inDegree(n, 0);
+    std::unordered_set<int> cycleNodes;
+
+    // Build the graph and calculate in-degrees
+    for (int i = 0; i < n; i++) {
+        int dependency = taskDependency[i];
+        inDegree[dependency - 1]++;
+        if (dependency == i + 1) {
+            cycleNodes.insert(i + 1);
+        }
+    }
+
+    // Find nodes with no incoming edges (potential final tasks)
+    int finalTaskCount = 0;
+    for (int i = 0; i < n; i++) {
+        if (inDegree[i] == 0) {
+            finalTaskCount++;
+        }
+    }
+
+    // If there's only one final task, no changes are needed
+    if (finalTaskCount == 1) {
+        return 0;
+    }
+
+    // Otherwise, we need to make changes to create a single final task
+    int changesNeeded = 0;
+    for (int i = 0; i < n; i++) {
+        if (cycleNodes.count(i + 1)) {
+            changesNeeded++;
+        }
+    }
+
+    // If there are multiple final tasks, we need to make changes to create a single final task
+    changesNeeded += finalTaskCount - 1;
+
+    return changesNeeded;
+}
+
+int main() {
+    int n = 4;
+    std::vector<int> taskDependency = {1,4,2,1};
+    int minChanges = findMinChanges(taskDependency);
+    std::cout << "Minimum changes needed: " << minChanges << std::endl;
+    return 0;
+}
