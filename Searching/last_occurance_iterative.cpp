@@ -4,7 +4,7 @@ int last_occurance(int arr[],int ele,int len)
 {
   int mid,low=0,high=len-1;
   
-  while(low<high)
+  while(low<=high)
   {
     mid=(low+high)/2;
     if(ele<arr[mid])
