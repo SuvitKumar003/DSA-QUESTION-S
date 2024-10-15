@@ -3,6 +3,7 @@ using namespace std;
 
 void bubble_srot(int arr[],int size)
 {
+  bool swap_arr=false;
   for(int i=0;i<size-1;i++)
   {
     for(int j=0;j<size-i-1;j++)
@@ -10,9 +11,14 @@ void bubble_srot(int arr[],int size)
       if(arr[j]>arr[j+1])
       {
         swap(arr[j],arr[j+1]);
+        swap_arr=true;
 
       }
-    }
+      if(swap_arr==false)
+      {
+        break;
+      }
+  }
   }
   cout<<" The sorted array is :";
   for(int i=0;i<size;i++)
