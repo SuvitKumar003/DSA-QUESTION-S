@@ -1,48 +1,52 @@
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
+#include <cmath>
 using namespace std;
-int determinant_matrix(vector<vector<int>> mat)
-{
-  int mat_row=mat.size();
-  int mat_col=mat[0].size();
-  int i=0;
-  int s1,s2,s3;
-  for(int j=0;j<mat_col;j++)
-  {
-    if(j==0)
-    {
-      int k=i+1;
-      int l=k+1;
-      int temp=mat[k][k]*mat[l][l]-mat[k][l]*mat[l][k];
-      cout<<" The result of cofactor for first row and column is "<<temp<<endl;
-      s1=mat[i][j]*temp;
-      
-    }
-    else if(j==1)
-    {
-      int k=j+1;
-      int temp=mat[j][i]*mat[k][k]-mat[j][k]*mat[k][i];
-      cout<<" The result of cofactor matrix for second column is "<<temp<<endl;
-      s2=-mat[i][j]*temp;
-    }
-    else if(j==2)
-    {
-      int k=i+1;
-      int temp=mat[k][i]*mat[j][k]-mat[k][k]*mat[j][i];
-      cout<<" The result of the cofactor for the third columns is "<<temp<<endl;
-      s3=mat[i][j]*temp;
-      return s1+s2+s3;
-    }
-    else
-    {
-      cout<<" out of bound"<<endl;
-    }
 
-  }
+// Declare the determinant function so it can be used in cofactor
+int determinant(vector<vector<int>> matrix);
+
+int cofactor(vector<vector<int>> matrix, int p, int q, int n) {
+    vector<vector<int>> temp(n - 1, vector<int>(n - 1));
+    int i = 0, j = 0;
+    for (int row = 0; row < n; row++) {
+        for (int col = 0; col < n; col++) {
+            if (row != p && col != q) {
+                temp[i][j++] = matrix[row][col];
+                if (j == n - 1) {
+                    j = 0;
+                    i++;
+                }
+            }
+        }
+    }
+    return determinant(temp);  // Now this call to determinant will work
 }
-int main()
-{
-    vector<vector<int>> mat = {{1,2,3},{4,5,6},{7,8,9}};
-    cout<<" The result of the determinant is "<<determinant_matrix(mat);
+
+int determinant(vector<vector<int>> matrix) {
+    int n = matrix.size();
+    if (n == 1) {
+        return matrix[0][0];
+    }
+    if (n == 2) {
+        return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+    }
+    int det = 0;
+    for (int i = 0; i < n; i++) {
+        det += pow(-1, i) * matrix[0][i] * cofactor(matrix, 0, i, n);
+    }
+    return det;
+}
+
+int main() {
+    vector<vector<int>> matrix = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
+
+
+    
+    cout << determinant(matrix) << endl;
     return 0;
 }
