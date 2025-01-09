@@ -1,20 +1,25 @@
 #include<iostream>
 #include<vector>
+#include<unordered_set>
 using namespace std;
 bool subarray_zero_sum(vector<int> arr)
 {
   
-  for(int i=0;i<arr.size();i++)
   {
-    int arr_sum=arr[i];
-    for(int j=i+i;j<arr.size();j++)
+    unordered_set<int> s;
+    int prefix_sum=0;
+    for(int i=0;i<arr.size();i++)
     {
-      arr_sum+=arr[j];
-      if(arr_sum==0)
+      prefix_sum+=arr[i];
+      if(s.find(prefix_sum)!=s.end())
       {
         return true;
       }
-
+      if(prefix_sum==0)
+      {
+        return true;
+      }
+      s.insert(prefix_sum);
     }
   }
   return false;
